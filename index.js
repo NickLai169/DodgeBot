@@ -14,7 +14,7 @@ for (const file of commandFiles) {
 }
 
 
-const {prefix, defaultRegion} = require("./config.json");
+const {prefix, defaultRegion, APIKey} = require("./config.json");
 const {token} = require("./token.json");
 
 bot.on("message", message => {
@@ -24,6 +24,11 @@ bot.on("message", message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/);
+  var argument = "";
+  for (const inputs of args.slice(1)) {
+    argument += inputs + " ";
+  }
+
   const command = args[1].toLowerCase();
 
   //These line actually exectues the code :D
@@ -33,17 +38,15 @@ bot.on("message", message => {
   }
 
   try {
-    bot.commands.get(command).execute(message, args);
+    bot.commands.get(command).execute(message, argument, APIKey);
   } catch (error) {
     console.error(error);
-    message.reply("There was an error! >:(")
+    message.reply("Put in a real input please >:(")
   }
 })
 
 bot.once("ready", () => {
   console.log("DodgeBot online");
-  console.log("prefix: " + prefix);
-  console.log("token: " + token);
 })
 
 bot.login(token);

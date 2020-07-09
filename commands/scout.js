@@ -1,16 +1,13 @@
 module.exports = {
   name: "scout",
-  description: "Scouts the indicated player",
-  execute(message, args) {
-    console.log(args);
-    var region = "na";
-    var summonerName = args[3]
-    if (!args[3]) {
-      summonerName = args[2];
+  description: "Index function that activates that other scout functions",
+  execute(message, args, APIkey) {
+    if (args.includes(",")) {
+      bot.commands.get("scoutMultiple").execute(message, args, APIkey);
+    } else if (args.includes("joined the lobby")) {
+      bot.commands.get("scoutChampSelect").execute(message, args, APIkey);
     } else {
-      region = args[2];
+      bot.commands.get("scoutSingle").execute(message, args, APIkey);
     }
-    region = region.toLowerCase();
-    message.channel.send(`https://www.leagueofgraphs.com/summoner/${region}/${summonerName}`);
   },
 };
