@@ -14,7 +14,7 @@ for (const file of commandFiles) {
 }
 
 
-const {prefix} = require("./config.json");
+const {prefix, defaultRegion} = require("./config.json");
 const {token} = require("./token.json");
 
 bot.on("message", message => {
@@ -25,9 +25,6 @@ bot.on("message", message => {
 
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args[1].toLowerCase();
-
-  console.log("args: " + args);
-  console.log("command: " + command);
 
   //These line actually exectues the code :D
   if (!bot.commands.has(command)) {
