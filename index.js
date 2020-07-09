@@ -14,8 +14,8 @@ for (const file of commandFiles) {
 }
 
 
-const {prefix, defaultRegion, APIKey} = require("./config.json");
-const {token} = require("./token.json");
+const {prefix, defaultRegion} = require("./config.json");
+const {token, APIkey} = require("./token.json");
 
 bot.on("message", message => {
   if (message.content === "hello") {
@@ -38,7 +38,7 @@ bot.on("message", message => {
   }
 
   try {
-    bot.commands.get(command).execute(message, argument, APIKey);
+    bot.commands.get(command).execute(message, argument, APIkey);
   } catch (error) {
     console.error(error);
     message.reply("Put in a real input please >:(")
