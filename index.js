@@ -18,7 +18,7 @@ const {prefix, defaultRegion} = require("./config.json");
 const {token, APIkey} = require("./token.json");
 
 bot.on("message", message => {
-  if (message.content === "hello") {
+  if (message.content.toLowerCase() === "hello DodgeBot") {
     message.reply("HELLO FRAND")
   }
   if (!message.content.startsWith(prefix) || message.author.bot) return;
