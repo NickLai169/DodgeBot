@@ -42,6 +42,7 @@ module.exports = {
           throw "couldn't find this guy"
         }
       })
+      //Definitely-Not-Nick's edit
       .then(summonerData => {
         var info = `${https + servers[region] + riotAPI}/lol/league/v4/entries/by-summoner/${summonerData.id}`;
         return info;
